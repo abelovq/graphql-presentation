@@ -1,17 +1,15 @@
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const cors = require('cors');
-const { buildSchema } = require('graphql');
-const { readFileSync } = require('fs');
+const { ApolloServer, gql } = require('apollo-server-express');
+const { typeDefs, resolvers } = require('./schema');
 
-// ------------------------------------------------------
-// ------------------------------------------------------
-// ------------------------------------------------------
-// ------------------------------------------------------
+const { createStore } = require('./utils');
 
-const schemaString = readFileSync('./schema.graphql', { encoding: 'utf8' });
+const store = createStore();
 
-const schema = buildSchema(schemaString);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
 const allBooks = [
 	{
@@ -65,17 +63,9 @@ const root = {
 
 const app = express();
 
-app.use(cors());
+server.applyMiddleware({ app });
 
-app.use(
-	'/graphql',
-	graphqlHTTP({
-		schema: schema,
-		rootValue: root,
-		graphiql: true
-	})
-);
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+)
 
-app.listen(6006);
-
-console.log('Running a GraphQL API server at http://localhost:6006/graphql');
