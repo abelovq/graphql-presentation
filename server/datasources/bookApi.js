@@ -45,14 +45,15 @@ class BookAPI extends DataSource {
 		console.log('firstName', firstName);
 		console.log('lastName', lastName);
 		try {
-			const newBook = await this.store.books.create({
-				title,
-				authorId: 3,
-				author: { id: 3, firstName, lastName },
-				include: [{ model: this.store.authors }]
-			});
-			// newBook.setAuthor(3);
-			newBook.save();
+			const newBook = await this.store.books.create(
+				{
+					title,
+					authorId: 3
+				},
+				{ include: [{ model: this.store.authors }] }
+			);
+			console.log('newBook', newBook);
+			await this.store.authors.create({ id: 3, firstName, lastName, bookId: 3 });
 			return true;
 		} catch (err) {
 			console.log(err);
