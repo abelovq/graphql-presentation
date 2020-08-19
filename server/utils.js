@@ -7,8 +7,8 @@ module.exports.createStore = () => {
 	};
 
 	const db = new SQL('database', 'username', 'password', {
-		dialect: 'mysql',
-		storage: './test.sql',
+		dialect: 'sqlite',
+		storage: './test.db',
 		operatorsAliases,
 		logging: false
 	});

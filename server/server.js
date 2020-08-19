@@ -17,51 +17,6 @@ const server = new ApolloServer({
 	context: () => ({ token: 'foo' })
 });
 
-const allBooks = [
-	{
-		id: '1',
-		title: 'Another awesome book',
-		description: '123',
-		author: {
-			id: '1',
-			firstName: 'Alex',
-			lastName: 'Kislov'
-		}
-	},
-	{
-		id: '2',
-		title: 'Awesome book',
-		description: '123',
-		author: {
-			id: '1',
-			firstName: 'Alex',
-			lastName: 'Kislov'
-		}
-	}
-];
-
-const root = {
-	getAllBooks: () => {
-		return allBooks;
-	},
-	getBook: params => {
-		return allBooks.find(({ id }) => params.id === id);
-	},
-	addBook: params => {
-		allBooks.push({
-			id: allBooks.length + 1,
-			...params.book,
-			author: {
-				id: '1',
-				firstName: 'Alex',
-				lastName: 'Kislov'
-			}
-		});
-
-		return true;
-	}
-};
-
 // ------------------------------------------------------
 // ------------------------------------------------------
 // ------------------------------------------------------
