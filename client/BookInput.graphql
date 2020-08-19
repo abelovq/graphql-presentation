@@ -1,0 +1,4 @@
+input BookInput {
+    title: String!
+    description: String!
+}

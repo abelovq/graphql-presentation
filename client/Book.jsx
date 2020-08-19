@@ -10,12 +10,12 @@ export default ({ id }) => {
 	});
 
 	const book = data ? data.getBook : null;
-
 	return book ? (
 		<div>
 			<h1>{book.title}</h1>
+			by <span>{book.author.firstName}</span>
 		</div>
 	) : (
-		<div>Loading...</div>
-	);
+			<div>Loading...</div>
+		);
 };
