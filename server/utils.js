@@ -7,8 +7,8 @@ module.exports.createStore = () => {
 	};
 
 	const db = new SQL('database', 'username', 'password', {
-		dialect: 'sqlite',
-		storage: './test.db',
+		dialect: 'mysql',
+		storage: './test.sql',
 		operatorsAliases,
 		logging: false
 	});
@@ -38,7 +38,7 @@ module.exports.createStore = () => {
 				autoIncrement: true
 			},
 			firstName: SQL.STRING,
-			lastName: SQL.STRING,
+			lastName: SQL.STRING
 		},
 		{
 			timestamps: false

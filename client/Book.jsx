@@ -13,9 +13,12 @@ export default ({ id }) => {
 	return book ? (
 		<div>
 			<h1>{book.title}</h1>
-			by <span>{book.author.firstName}</span>
+			by{' '}
+			<span>
+				{book.author.firstName} {book.author.lastName}
+			</span>
 		</div>
 	) : (
-			<div>Loading...</div>
-		);
+		<div>Loading...</div>
+	);
 };

@@ -14,7 +14,7 @@ export default ({ onSelect }) => {
 			{!loading && data.getAllBooks && (
 				<ul>
 					{data.getAllBooks.map(book => (
-						<li key={book.title}>
+						<li key={book.id}>
 							{book.id}: {book.title} ({book.author.firstName} {book.author.lastName}){' '}
 							<button onClick={() => onSelect(book)}>select</button>
 						</li>

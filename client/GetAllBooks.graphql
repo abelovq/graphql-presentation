@@ -3,6 +3,7 @@ query GetAllBooks {
 		id
 		title
 		author {
+			id
 			firstName
 			lastName
 		}
