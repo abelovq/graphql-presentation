@@ -41,19 +41,23 @@ class BookAPI extends DataSource {
 
 	async addBook(title, description) {
 		console.log('title', title);
+		console.log('NEED', this.store.authors)
 		const [firstName, lastName] = description.split(' ');
 		console.log('firstName', firstName);
 		console.log('lastName', lastName);
 		try {
+			await this.store.authors.create({ firstName, lastName });
+			await this.store.books.update({ authorId: 3 }, { where: { title } })
 			const newBook = await this.store.books.create(
 				{
+
 					title,
 					authorId: 3
 				},
 				{ include: [{ model: this.store.authors }] }
 			);
 			console.log('newBook', newBook);
-			await this.store.authors.create({ id: 3, firstName, lastName, bookId: 3 });
+
 			return true;
 		} catch (err) {
 			console.log(err);

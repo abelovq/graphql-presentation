@@ -13,7 +13,8 @@ const server = new ApolloServer({
 	resolvers,
 	dataSources: () => ({
 		bookApi: new BookAPI({ store })
-	})
+	}),
+	context: () => ({ token: 'foo' })
 });
 
 const allBooks = [

@@ -39,15 +39,14 @@ module.exports.createStore = () => {
 			},
 			firstName: SQL.STRING,
 			lastName: SQL.STRING,
-			bookId: SQL.INTEGER
 		},
 		{
 			timestamps: false
 		}
 	);
 
-	authors.hasMany(books);
-	books.belongsTo(authors, { foreignKey: 'authorId' });
+	authors.hasMany(books, { foreignKey: 'authorId' });
+	books.belongsTo(authors);
 
 	return { books, authors };
 };

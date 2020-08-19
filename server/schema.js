@@ -31,7 +31,8 @@ const typeDefs = gql`
 
 const resolvers = {
 	Query: {
-		getAllBooks: async (_, __, { dataSources }) => {
+		getAllBooks: async (_, __, { dataSources, token }) => {
+			console.log('token', token)
 			return await dataSources.bookApi.getAllBooks();
 		},
 		getBook: async (_, { id }, { dataSources }) => {
